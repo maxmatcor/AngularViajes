@@ -1,0 +1,61 @@
+<form
+  [formGroup]="fg"
+  (ngSubmit)="
+    guardar(
+      fg.controls['destino'].value,
+      fg.controls['place'].value,
+      fg.controls['date'].value
+    )
+  "
+>
+  <div class="form-group">
+    <label for="destino">Titulo</label>
+    <input
+      type="text"
+      class="form-control"
+      id="destino"
+      placeholder="Titulo"
+      [formControl]="fg.controls['destino']"
+    />
+    <ul>
+      <li *ngFor="let r of serchResults">{{ r }}</li>
+    </ul>
+    <div *ngIf="fg.controls['destino'].hasError('required')">
+      <i> Debe Ingresar un titulo</i>
+    </div>
+    <div *ngIf="fg.controls['destino'].hasError('minLongNombre')">
+      <i>Debe tener al menos {{ minLongNombre }} caracteres </i>
+    </div>
+    <div *ngIf="fg.controls['destino'].hasError('invalidNombre')">
+      <i> Titulo invalido</i>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="place">lugar</label>
+    <input
+      type="text"
+      class="form-control"
+      id="place"
+      placeholder="Lugar"
+      [formControl]="fg.controls['place']"
+    />
+  </div>
+  <div *ngIf="!fg.controls['place'].valid"><i>Destino invalido</i></div>
+  <div *ngIf="fg.controls['place'].hasError('required')">
+    <i>Debe Ingresar un Destino</i>
+  </div>
+  <div class="form-group">
+    <label for="date">dia</label>
+    <input
+      type="date"
+      class="form-control"
+      id="date"
+      placeholder="Fecha"
+      [formControl]="fg.controls['date']"
+    />
+  </div>
+
+  <button type="submit" class="btn btn-primary" *ngIf="fg.valid">
+    Guardar
+  </button>
+</form>

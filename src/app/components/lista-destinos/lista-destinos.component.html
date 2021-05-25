@@ -1,0 +1,40 @@
+<div class="container content">
+  <br class="mb-20" />
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <span class="anchor" id="formLogin"></span>
+
+      <!--fomr card login with validation feedback-->
+      <div class="card card-outline-secondary">
+        <div class="card-header"></div>
+        <div class="card-body">
+          <!--Llamando a form destino viaje-->
+          <app-form-destino-viaje
+            (onItemAdded)="agregado($event)"
+          ></app-form-destino-viaje>
+        </div>
+        <hr class="mb-5" />
+        <div class="row row-flex">
+          <h5>Actividad</h5>
+          <ul>
+            <li *ngFor="let u of updates">{{ u }}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <br class="mb-5" />
+    <!-- ($event) acepta el evento que llega por el eventEmitter-->
+    <!-- let i=index indice del for -->
+    <hr class="mb-5" />
+    <div class="row row-flex">
+      <app-destino-viaje
+        *ngFor="let list of all; let i = index"
+        [destino]="list"
+        (clicked)="elegido($event)"
+        [index]="i + 1"
+        appEspiame
+      ></app-destino-viaje>
+    </div>
+  </div>
+</div>

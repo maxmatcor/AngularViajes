@@ -1,0 +1,69 @@
+<div class="container mt-2">
+  <!--   <div class="card card-block mb-2">
+        <h4 class="card-title">Card 1</h4>
+        <p class="card-text">Welcom to bootstrap card styles</p>
+        <a href="#" class="btn btn-primary">Submit</a>
+      </div>   -->
+
+  <div class="row">
+    <div
+      class="card-content"
+      [@esFavorito]="
+        destino.isSelected() ? 'estadoFavorito' : 'estadoNoFavorito'
+      "
+    >
+      <div
+        class="alert alert-primary"
+        role="alert"
+        *ngIf="destino.isSelected()"
+      >
+        Preferido
+      </div>
+      <img src="http://placeimg.com/640/480/nature" alt="Photo of sunset" />
+      <span
+        ><h4>{{ position }}</h4></span
+      >
+      <h5 class="card-title mt-3 mb-3">Titulo:{{ destino.destino }}</h5>
+      <p class="card-text">Lugar:{{ destino.nombre }}</p>
+      <p class="card-text">Fecha:{{ destino.date }}</p>
+      <p class="card-text">Servicios</p>
+      <ul>
+        <li *ngFor="let s of destino.servicios">
+          <span [ngSwitch]="s">
+            <i *ngSwitchDefault>{{ s }}</i>
+            <i *ngSwitchCase="'desayuno'" style="color: red">{{ s }}</i>
+          </span>
+        </li>
+      </ul>
+      <div>
+        <a
+          href="#"
+          (click)="voteUp()"
+          appTrackearClick
+          data-trackear-tags="destino_vote_up lista_destinos_item"
+        >
+          <i class="material-icons md-18">thumb_up</i>
+        </a>
+        &nbsp;
+        <a
+          href="#"
+          (click)="voteDown()"
+          appTrackearClick
+          data-trackear-tags="destino_vote_down lista_destinos_item"
+        >
+          <i class="material-icons md-18">thumb_down</i>
+        </a>
+        &nbsp; Votos: {{ destino.votes }}
+      </div>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        (click)="ir()"
+        appTrackearClick
+        data-trackear-tags="destino_elegir_preferido lista_destinos_item"
+      >
+        Favorito
+      </button>
+    </div>
+  </div>
+</div>
